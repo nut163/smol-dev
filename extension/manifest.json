@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "Amazon Product Comparison",
+  "description": "This extension allows you to save and compare different items on Amazon.",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "https://www.amazon.com/*"
+  ],
+  "background": {
+    "scripts": ["lib/jquery.min.js", "models/Product.js", "models/Comparison.js", "services/AmazonService.js", "services/StorageService.js", "services/ComparisonService.js", "background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.com/*"],
+      "js": ["lib/jquery.min.js", "models/Product.js", "content.js"]
+    }
+  ]
+}
